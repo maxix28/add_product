@@ -10,6 +10,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var  binding: ActivityMainBinding
@@ -27,9 +30,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         categoryRef = FirebaseDatabase.getInstance().getReference("Category")
-
         storageRef= FirebaseStorage.getInstance().getReference("Image")
-
 
         categoryName=""
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->//choose category
@@ -66,30 +67,43 @@ class MainActivity : AppCompatActivity() {
 
         binding.add.setOnClickListener {
             val contactID = categoryRef.push().key!!//створює унікальний ключ даних
-
-            uri?.let{
+            GlobalScope.launch(Dispatchers.IO) { //переходимо на інший потік для загризки даних в базу
+            uri?.let {
                 storageRef.child(contactID).putFile(it)
-                    .addOnSuccessListener { task->
-                        task.metadata!!.reference!!.downloadUrl
-                            .addOnSuccessListener {url->
-                                Toast.makeText(this, "image stored successfully", Toast.LENGTH_SHORT).show()
+                    .addOnSuccessListener { task ->
+                        task.metadata!!.reference!!.downloadUrl//отримує посилання на фотографію
+                            .addOnSuccessListener { url ->
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "image stored successfully",
+                                    Toast.LENGTH_SHORT)
+                                    .show()
 
-                                val imgUrl= url.toString()
-                                category= Category(categoryName,imgUrl,contactID)
+                                val imgUrl = url.toString()
+                                category = Category(categoryName, imgUrl, contactID)//створює обєке класу категорія
 
 
-                                categoryRef.child(contactID).setValue(category)
+                                categoryRef.child(contactID).setValue(category)//надсилає обєкт в базу даних
                                     .addOnCompleteListener {
-                                        Toast.makeText(this, "data stored successfully", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this@MainActivity,
+                                            "data stored successfully",
+                                            Toast.LENGTH_SHORT)
+                                            .show()
                                     }
                                     .addOnFailureListener {
-                                        Toast.makeText(this, "error ${it.message}", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(
+                                            this@MainActivity,
+                                            "error ${it.message}",
+                                            Toast.LENGTH_SHORT).
+                                        show()
 
                                     }
                             }
 
                     }
             }
+        }
 
         }
 
