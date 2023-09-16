@@ -1,10 +1,12 @@
-package com.example.add_poduct
+package com.example.add_poduct.activity
 
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.add_poduct.utility.Category
+import com.example.add_poduct.R
 import com.example.add_poduct.databinding.ActivityMainBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -35,15 +37,15 @@ class MainActivity : AppCompatActivity() {
         categoryName=""
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->//choose category
             when(i){
-                R.id.radioButton1->{
+                R.id.radioButton1 ->{
                     categoryName=binding.radioButton1.text.toString()
                     Toast.makeText(this,"${binding.radioButton1.text}", Toast.LENGTH_SHORT).show()
                 }
-                R.id.radioButton2->{
+                R.id.radioButton2 ->{
                     categoryName=binding.radioButton2.text.toString()
                     Toast.makeText(this,"${binding.radioButton2.text}", Toast.LENGTH_SHORT).show()
                 }
-                R.id.radioButton3->{
+                R.id.radioButton3 ->{
                     categoryName=binding.radioButton3.text.toString()
                     Toast.makeText(this,"${binding.radioButton3.text}", Toast.LENGTH_SHORT).show()
                 }

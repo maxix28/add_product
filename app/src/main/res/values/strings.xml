@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">add_poduct</string>
+    <string name="name">Name</string>
+    <string name="create_new">Create new</string>
 </resources>
