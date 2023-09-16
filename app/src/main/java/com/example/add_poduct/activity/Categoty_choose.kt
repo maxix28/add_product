@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.add_poduct.R
+import com.example.add_poduct.adapters.CategoryAdapter
 import com.example.add_poduct.databinding.ActivityCategotyChooseBinding
 import com.example.add_poduct.utility.Category
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.Dispatchers
@@ -24,16 +25,22 @@ class categoty_choose : AppCompatActivity() {
 
     lateinit var binding: ActivityCategotyChooseBinding
     private var uri: Uri?=null
+    lateinit var CategoryList:java.util.ArrayList<Category>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityCategotyChooseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        categoryRef = FirebaseDatabase.getInstance().getReference("Category")
+        storageRef= FirebaseStorage.getInstance().getReference("Image")
+        CategoryList= arrayListOf()
+       fetch()// отримує данні
+        binding.rvCategory.apply {
+            setHasFixedSize(true)
+            layoutManager= LinearLayoutManager(this@categoty_choose)
+        }
         val pickImage= registerForActivityResult(ActivityResultContracts.GetContent()){
-
-            categoryRef = FirebaseDatabase.getInstance().getReference("Category")
-            storageRef= FirebaseStorage.getInstance().getReference("Image")
-
 
             binding.newImageCategory.setImageURI(it)
             if(it!= null){
@@ -76,6 +83,7 @@ class categoty_choose : AppCompatActivity() {
                                                     "data stored successfully",
                                                     Toast.LENGTH_SHORT)
                                                     .show()
+                                                binding.newCategoryName.setText("")
                                             }
                                             .addOnFailureListener {
                                                 Toast.makeText(
@@ -91,9 +99,45 @@ class categoty_choose : AppCompatActivity() {
                     }
                 }
             }
+            fetch()// оновлює дані
+
         }
+
     }
 
+    private fun fetch() {
+        //Toast.makeText(this@categoty_choose,"stat fetch ", Toast.LENGTH_SHORT).show()
+
+        categoryRef.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+               // Toast.makeText(this@categoty_choose,"stat fetch 2 ", Toast.LENGTH_SHORT).show()
+
+                CategoryList.clear()
+                if(snapshot.exists()){
+                    for(contactSnap in snapshot.children){
+                        val contacts= contactSnap.getValue(Category::class.java)
+                        CategoryList.add(contacts!!)
+                    }
+                       //  Toast.makeText(this@categoty_choose,"$CategoryList ", Toast.LENGTH_SHORT).show()
+
+                }
+                else{
+                    Toast.makeText(this@categoty_choose,"no category ", Toast.LENGTH_SHORT).show()
+
+                }
+                val rvAdapter= CategoryAdapter(CategoryList)
+                binding.rvCategory.adapter=rvAdapter
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@categoty_choose,"$error ", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+
+    }
 
 
 }

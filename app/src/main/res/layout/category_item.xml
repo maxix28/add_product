@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/categoryPhoto"
         android:layout_width="401dp"
         android:layout_height="124dp"
         android:layout_marginStart="4dp"
@@ -32,8 +32,8 @@
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/categoryPhoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/categoryPhoto"
+        app:layout_constraintTop_toTopOf="@+id/categoryPhoto" />
 </androidx.constraintlayout.widget.ConstraintLayout>
