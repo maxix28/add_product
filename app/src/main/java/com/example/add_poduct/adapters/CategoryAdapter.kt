@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.add_poduct.Extra_Category
 import com.example.add_poduct.activity.ProductView
 import com.example.add_poduct.databinding.CategoryItemBinding
 import com.example.add_poduct.utility.Category
@@ -32,6 +33,7 @@ class CategoryAdapter (private val contactList:java.util.ArrayList<Category>,  v
 
             rvContainer.setOnClickListener {
                 val ProductIntent= Intent(context1, ProductView::class.java)
+                ProductIntent.putExtra(Extra_Category,currentItem)
                 context1.startActivity(ProductIntent)
             }
         }
