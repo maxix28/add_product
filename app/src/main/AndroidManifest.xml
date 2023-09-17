@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Add_poduct"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ProductView"
+            android:exported="false" />
+        <activity
             android:name=".activity.start_activity"
             android:exported="true">
             <intent-filter>
@@ -19,16 +22,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.categoty_choose"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

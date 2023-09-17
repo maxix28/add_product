@@ -1,14 +1,16 @@
 package com.example.add_poduct.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.add_poduct.databinding.ActivityCategotyChooseBinding
+import com.example.add_poduct.activity.ProductView
 import com.example.add_poduct.databinding.CategoryItemBinding
 import com.example.add_poduct.utility.Category
 import com.squareup.picasso.Picasso
 
-class CategoryAdapter (private val contactList:java.util.ArrayList<Category>): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter (private val contactList:java.util.ArrayList<Category>,  var context1: Context): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
     class ViewHolder(val binding: CategoryItemBinding): RecyclerView.ViewHolder(binding.root){
 
     }
@@ -28,6 +30,10 @@ class CategoryAdapter (private val contactList:java.util.ArrayList<Category>): R
             itemName.text=currentItem.name.toString()
             Picasso.get().load(currentItem.image).into(categoryPhoto)
 
+            rvContainer.setOnClickListener {
+                val ProductIntent= Intent(context1, ProductView::class.java)
+                context1.startActivity(ProductIntent)
+            }
         }
 
     }

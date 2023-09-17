@@ -126,7 +126,7 @@ class categoty_choose : AppCompatActivity() {
                     Toast.makeText(this@categoty_choose,"no category ", Toast.LENGTH_SHORT).show()
 
                 }
-                val rvAdapter= CategoryAdapter(CategoryList)
+                val rvAdapter= CategoryAdapter(CategoryList,this@categoty_choose)
                 binding.rvCategory.adapter=rvAdapter
             }
 
