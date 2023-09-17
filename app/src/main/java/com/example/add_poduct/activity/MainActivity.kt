@@ -43,24 +43,7 @@ lateinit var  productAdd: Product
         storageRef= FirebaseStorage.getInstance().getReference("Image")
 
         productName=""
-//        binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->//choose category
-//            when(i){
-//                R.id.radioButton1 ->{
-//                    productName=binding.radioButton1.text.toString()
-//                    Toast.makeText(this,"${binding.radioButton1.text}", Toast.LENGTH_SHORT).show()
-//                }
-//                R.id.radioButton2 ->{
-//                    productName=binding.radioButton2.text.toString()
-//                    Toast.makeText(this,"${binding.radioButton2.text}", Toast.LENGTH_SHORT).show()
-//                }
-//                R.id.radioButton3 ->{
-//                    productName=binding.radioButton3.text.toString()
-//                    Toast.makeText(this,"${binding.radioButton3.text}", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//
-//        }
+
 //open gallery to choose photo
         val pickImage= registerForActivityResult(ActivityResultContracts.GetContent()){
 
@@ -76,7 +59,7 @@ lateinit var  productAdd: Product
 
 
         binding.add.setOnClickListener {
-
+var amount = binding.amountNew.text.toString().toInt()
             productName= binding.ProductNameAdd.text.toString()
             price= binding.productPriceAdd.text.toString()
             description= binding.describeTXT.text.toString()
@@ -101,7 +84,7 @@ lateinit var  productAdd: Product
                                         val imgUrl = url.toString()
 
 
-                                        productAdd = Product(category_.name,productName,imgUrl, price.toInt(),contactID,45,description)
+                                        productAdd = Product(category_.name,productName,imgUrl, price.toInt(),contactID,amount,description)
 
 
                                         categoryRef.child(contactID)

@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/ProductNameAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -45,17 +45,17 @@
         app:layout_constraintTop_toBottomOf="@+id/imageProduct" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/productPriceAdd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="price"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/ProductNameAdd" />
 
     <AutoCompleteTextView
         android:id="@+id/describeTXT"
@@ -67,35 +67,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/productPriceAdd" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/amountNew"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="amount"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="category1" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="92dp"
-            android:layout_height="match_parent"
-            android:text="category2" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:text="categore3" />
-
-    </RadioGroup>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productPriceAdd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
