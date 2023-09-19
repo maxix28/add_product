@@ -1,5 +1,6 @@
 package com.example.add_poduct.activity
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -59,6 +60,7 @@ lateinit var  productAdd: Product
 
 
         binding.add.setOnClickListener {
+            Toast.makeText(this,"Start uploding",Toast.LENGTH_SHORT).show()
 var amount = binding.amountNew.text.toString().toInt()
             productName= binding.ProductNameAdd.text.toString()
             price= binding.productPriceAdd.text.toString()
@@ -96,6 +98,7 @@ var amount = binding.amountNew.text.toString().toInt()
                                                     Toast.LENGTH_SHORT
                                                 )
                                                     .show()
+                                                startActivity(Intent(this@MainActivity,ProductView::class.java))
                                             }
                                             .addOnFailureListener {
                                                 Toast.makeText(
