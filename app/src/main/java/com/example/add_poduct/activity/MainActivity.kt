@@ -110,6 +110,7 @@ var amount = binding.amountNew.text.toString().toInt()
                                             }
                                     }
 
+
                             }
                     }
                 }
