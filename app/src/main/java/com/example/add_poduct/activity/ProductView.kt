@@ -14,12 +14,13 @@ import com.example.add_poduct.utility.Category
 import com.example.add_poduct.utility.Product
 import com.google.firebase.database.*
 
-private  lateinit var  productRef : DatabaseReference
-lateinit var ProductList:java.util.ArrayList<Product>
 
-lateinit var  category_:Category
 class ProductView : AppCompatActivity() {
     lateinit var  binding: ActivityProductViewBinding
+    private  lateinit var  productRef : DatabaseReference
+    lateinit var ProductList:java.util.ArrayList<Product>
+
+    lateinit var  category_:Category
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductViewBinding.inflate(layoutInflater)

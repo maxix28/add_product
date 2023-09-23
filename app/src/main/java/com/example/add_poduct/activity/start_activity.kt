@@ -16,5 +16,9 @@ class start_activity : AppCompatActivity() {
             val AddIntent= Intent(this,categoty_choose::class.java)
             startActivity(AddIntent)
         }
+        binding.clienList.setOnClickListener {
+            val ClientIntent= Intent(this,ClientList::class.java)
+            startActivity(ClientIntent)
+        }
     }
 }
