@@ -7,19 +7,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.add_poduct.databinding.CategoryItemBinding
 import com.example.add_poduct.databinding.Client1Binding
+import com.example.add_poduct.databinding.Client2Binding
 import com.example.add_poduct.databinding.ProductItemBinding
 import com.example.add_poduct.utility.Category
 import com.example.add_poduct.utility.Client
 
 class ClientAdapter(private val clientList: java.util.ArrayList<Client>, var context1: Context) :
     RecyclerView.Adapter<ClientAdapter.ViewHolder>() {
-    class ViewHolder(val binding: Client1Binding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: Client2Binding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ClientAdapter.ViewHolder(
-            Client1Binding.inflate(
+            Client2Binding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -34,11 +35,13 @@ class ClientAdapter(private val clientList: java.util.ArrayList<Client>, var con
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = clientList[position]
+
         holder.binding.apply {
-            nameClient.text = currentItem.name
-            // price.text="$"+currentItem.
-            phoneClient.text = currentItem.phonenumber
-            Product.text = currentItem.idproduct
+//            nameClient.text = currentItem.name
+//            // price.text="$"+currentItem.
+//            phoneClient.text = currentItem.phonenumber
+//            Product.text = currentItem.idproduct
+            name.text="lala"
         }
     }
 }

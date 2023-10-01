@@ -29,6 +29,7 @@ class ClientList : AppCompatActivity() {
             val layoutmanager= GridLayoutManager(this@ClientList,2)
 
         }
+        binding.list.text= ClientList.toString()//joinToString { "," }
     }
 
     private fun fetchData() {
@@ -51,6 +52,7 @@ class ClientList : AppCompatActivity() {
                 }
                 val rvAdapter= ClientAdapter(ClientList,this@ClientList)
                 binding.rvClent.adapter= rvAdapter
+                binding.list.text= ClientList.toString()
 
             }
             override fun onCancelled(error: DatabaseError) {
