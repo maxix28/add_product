@@ -6,65 +6,59 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.add_poduct.adapters.ClientAdapter
-import com.example.add_poduct.adapters.ClientAdapter2
-import com.example.add_poduct.adapters.ProductAdapter
+import com.example.add_poduct.databinding.ActivityClient2ListBinding
 import com.example.add_poduct.databinding.ActivityClientListBinding
 import com.example.add_poduct.utility.Client
-import com.example.add_poduct.utility.Product
 import com.google.firebase.database.*
 
-class ClientList : AppCompatActivity() {
-    lateinit var  binding: ActivityClientListBinding
+class Client2List : AppCompatActivity() {
+    lateinit var  binding:ActivityClient2ListBinding
     private  lateinit var  productRef : DatabaseReference
     lateinit var ClientList:java.util.ArrayList<Client>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityClientListBinding.inflate(layoutInflater)
+        binding = ActivityClient2ListBinding.inflate(layoutInflater)
+      //  binding = Ac
         setContentView(binding.root)
-
         productRef= FirebaseDatabase.getInstance().getReference("clients")
         ClientList= arrayListOf()
         fetchData()
-        binding.rvClent.apply {
+
+        binding.rvList.apply {
             setHasFixedSize(true)
-            val layoutmanager= LinearLayoutManager(this@ClientList)
-            layoutManager=layoutmanager
+            val layoutmanager= LinearLayoutManager(this@Client2List)
 
         }
-        binding.list.text= ClientList.toString()//joinToString { "," }
     }
 
     private fun fetchData() {
-        Toast.makeText(this@ClientList,"FetchData", Toast.LENGTH_SHORT).show()
-
         productRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 ClientList.clear()
                 if(snapshot.exists()){
-                    Toast.makeText(this@ClientList,"Exist data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Client2List,"Exist data", Toast.LENGTH_SHORT).show()
 
                     for(contactSnap in snapshot.children){
                         val Client= contactSnap.getValue(Client::class.java)
-                        Toast.makeText(this@ClientList,"added data", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Client2List,"added data", Toast.LENGTH_SHORT).show()
 
                         ClientList.add(Client!!)
 
                     }
                     println(ClientList)
                 }
-                val rvAdapter= ClientAdapter(ClientList,this@ClientList)
-                binding.rvClent.adapter= rvAdapter
-                binding.list.text= ClientList.toString()
+                val rvAdapter= ClientAdapter(ClientList,this@Client2List)
+                binding.rvList.adapter= rvAdapter
+               // binding.list.text= ClientList.toString()
 
             }
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@ClientList,"$error ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Client2List,"$error ", Toast.LENGTH_SHORT).show()
 
             }
 
 
-            }
-        )
+        })
     }
 }
