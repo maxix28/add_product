@@ -10,13 +10,14 @@ import com.example.add_poduct.adapters.ClientAdapter2
 import com.example.add_poduct.adapters.ProductAdapter
 import com.example.add_poduct.databinding.ActivityClientListBinding
 import com.example.add_poduct.utility.Client
+import com.example.add_poduct.utility.Client1
 import com.example.add_poduct.utility.Product
 import com.google.firebase.database.*
 
 class ClientList : AppCompatActivity() {
     lateinit var  binding: ActivityClientListBinding
     private  lateinit var  productRef : DatabaseReference
-    lateinit var ClientList:java.util.ArrayList<Client>
+    lateinit var ClientList:java.util.ArrayList<Client1>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +46,7 @@ class ClientList : AppCompatActivity() {
                     Toast.makeText(this@ClientList,"Exist data", Toast.LENGTH_SHORT).show()
 
                     for(contactSnap in snapshot.children){
-                        val Client= contactSnap.getValue(Client::class.java)
+                        val Client= contactSnap.getValue(Client1::class.java)
                         Toast.makeText(this@ClientList,"added data", Toast.LENGTH_SHORT).show()
 
                         ClientList.add(Client!!)
@@ -55,7 +56,7 @@ class ClientList : AppCompatActivity() {
                 }
                 val rvAdapter= ClientAdapter(ClientList,this@ClientList)
                 binding.rvClent.adapter= rvAdapter
-                binding.list.text= ClientList.toString()
+              //  binding.list.text= ClientList.toString()
 
             }
             override fun onCancelled(error: DatabaseError) {

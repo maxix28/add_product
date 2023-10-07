@@ -12,15 +12,16 @@ import com.example.add_poduct.databinding.Client2Binding
 import com.example.add_poduct.databinding.ProductItemBinding
 import com.example.add_poduct.utility.Category
 import com.example.add_poduct.utility.Client
+import com.example.add_poduct.utility.Client1
 
-class ClientAdapter(private val clientList: java.util.ArrayList<Client>, var context1: Context) :
+class ClientAdapter(private val clientList: java.util.ArrayList<Client1>, var context1: Context) :
     RecyclerView.Adapter<ClientAdapter.ViewHolder>() {
     class ViewHolder(val binding: Client1Binding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(client: Client) {
+        fun bind(client: Client1) {
             binding.apply {
                 nameClient.text = client.name
                 phoneClient.text = client.phonenumber
-                price.text = client.idproduct
+                price.text = client.Price.toString()
                 // You can bind other views here if needed
                 Log.d("ClientAdapter", "!!!!!!!!!${client.name }  ${client.phonenumber} !!!!!!!!!!!!!!!!")
             }

@@ -17,7 +17,7 @@ class start_activity : AppCompatActivity() {
             startActivity(AddIntent)
         }
         binding.clienList.setOnClickListener {
-            val ClientIntent= Intent(this,ClientList::class.java)
+            val ClientIntent= Intent(this,orders_activity::class.java)
             startActivity(ClientIntent)
         }
     }
