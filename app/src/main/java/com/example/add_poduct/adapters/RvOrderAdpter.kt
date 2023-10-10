@@ -19,6 +19,9 @@ class RvOrderAdpter(val orderList:List<order>):RecyclerView.Adapter<RvOrderAdpte
             phoneNumber.text ="Phone: "+ currentItem.phoneClient
             ClientName.text= "Client: "+currentItem.client
             priceOrder.text ="price: $"+ currentItem.price.toString()
+            email.text = "email ${currentItem.email}"
+
+
         }
     }
 
@@ -28,5 +31,6 @@ class RvOrderAdpter(val orderList:List<order>):RecyclerView.Adapter<RvOrderAdpte
 
     override fun getItemCount(): Int {
          return orderList.size
+
     }
 }

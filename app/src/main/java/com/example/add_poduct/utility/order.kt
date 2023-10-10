@@ -5,7 +5,8 @@ data class order(val product:String?=null,
                  val client:String?=null,
                  val phoneClient:String?=null,
                  val itemId:String?=null,
-                 val orderId:String?=null
+                 val orderId:String?=null,
+                 val email :String?= null
 ) {
 
 
